@@ -21,6 +21,7 @@ public class BoardManager : MonoBehaviour
 
     [Header("References")]
     [SerializeField] private BoardButtonsManager boardButtonsManager;
+    [SerializeField] private BoardCanvas boardCanvas;
 
     [Header("Settings")]
     [SerializeField] private int[] ammoThresholds = new int[2] { 3, 6 };
@@ -70,7 +71,11 @@ public class BoardManager : MonoBehaviour
         board[row, column] = currentPlayer == Player.Player1 ? CellState.Player1 : CellState.Player2;
         lastShooter = Player.None;
 
-        CheckWinCondition(board[row, column]);
+        if (CheckWinCondition(board[row, column]))
+        {
+            UnityEngine.Debug.Log($"{currentPlayer} wins!");
+            // Handle win condition (e.g., display message, reset game, etc.)
+        }
         AmmoThresholdCheck(currentPlayer);
         StartCoroutine(SwitchTurn());
 
@@ -106,6 +111,7 @@ public class BoardManager : MonoBehaviour
                 if (ownedCount == ammoThresholds[i])
                 {
                     p1CanShoot = true;
+                    boardCanvas.UpdatePlayerOneAmmoText("Player 1 can shoot");
                     return;
                 }
             }
@@ -117,6 +123,7 @@ public class BoardManager : MonoBehaviour
                 if (ownedCount == ammoThresholds[i])
                 {
                     p2CanShoot = true;
+                    boardCanvas.UpdatePlayerTwoAmmoText("Player 2 can shoot");
                     return;
                 }
             }
@@ -168,6 +175,7 @@ public class BoardManager : MonoBehaviour
         yield return new WaitForSeconds(1f);
         currentPlayer = wasPlayer == Player.Player1 ? Player.Player2 : Player.Player1;
         boardButtonsManager.ToggleRowSelectors(true);
+        boardCanvas.UpdateCurrentPlayerText(currentPlayer == Player.Player1 ? "Player 1" : "Player 2");
     }
 
     #endregion
