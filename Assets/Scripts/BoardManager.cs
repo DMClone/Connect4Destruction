@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Diagnostics;
 using Unity.Mathematics;
 using UnityEngine;
 
@@ -17,6 +19,12 @@ public class BoardManager : MonoBehaviour
         Player2
     }
 
+    [Header("References")]
+    [SerializeField] private BoardButtonsManager boardButtonsManager;
+
+    [Header("Settings")]
+    [SerializeField] private int[] ammoThresholds = new int[2] { 3, 6 };
+
     private Player currentPlayer;
     private Player lastShooter;
 
@@ -28,9 +36,29 @@ public class BoardManager : MonoBehaviour
     private bool p1CanShoot;
     private bool p2CanShoot;
 
-    [SerializeField] private int[] ammoThresholds = new int[2] { 3, 6 };
     private int p1AmmoGained;
     private int p2AmmoGained;
+
+    private void Start()
+    {
+        currentPlayer = Player.Player1;
+        lastShooter = Player.None;
+
+        p1CanShoot = false;
+        p2CanShoot = false;
+
+        p1AmmoGained = 0;
+        p2AmmoGained = 0;
+
+        // Initialize board to empty
+        for (int r = 0; r < rows; r++)
+        {
+            for (int c = 0; c < columns; c++)
+            {
+                board[r, c] = CellState.Empty;
+            }
+        }
+    }
 
     #region Player Actions
 
@@ -44,6 +72,7 @@ public class BoardManager : MonoBehaviour
 
         CheckWinCondition(board[row, column]);
         AmmoThresholdCheck(currentPlayer);
+        StartCoroutine(SwitchTurn());
 
         return true;
     }
@@ -129,7 +158,19 @@ public class BoardManager : MonoBehaviour
 
     #endregion
 
+    #region Turn Management
 
+    private IEnumerator SwitchTurn()
+    {
+        Player wasPlayer = currentPlayer;
+        currentPlayer = Player.None;
+        boardButtonsManager.ToggleRowSelectors(false);
+        yield return new WaitForSeconds(1f);
+        currentPlayer = wasPlayer == Player.Player1 ? Player.Player2 : Player.Player1;
+        boardButtonsManager.ToggleRowSelectors(true);
+    }
+
+    #endregion
 
     private bool CheckWinCondition(CellState player)
     {
@@ -178,5 +219,10 @@ public class BoardManager : MonoBehaviour
             }
         }
         return false;
+    }
+
+    public Player GetCurrentPlayer()
+    {
+        return currentPlayer;
     }
 }
