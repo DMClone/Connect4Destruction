@@ -2,6 +2,7 @@ using System.Collections;
 using System.Diagnostics;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class BoardManager : MonoBehaviour
 {
@@ -26,6 +27,8 @@ public class BoardManager : MonoBehaviour
     [Header("Settings")]
     [SerializeField] private int[] ammoThresholds = new int[2] { 3, 6 };
 
+    private bool aiming;
+
     private Player currentPlayer;
     private Player lastShooter;
 
@@ -42,6 +45,8 @@ public class BoardManager : MonoBehaviour
 
     private void Start()
     {
+        aiming = false;
+
         currentPlayer = Player.Player1;
         lastShooter = Player.None;
 
@@ -73,8 +78,7 @@ public class BoardManager : MonoBehaviour
 
         if (CheckWinCondition(board[row, column]))
         {
-            UnityEngine.Debug.Log($"{currentPlayer} wins!");
-            // Handle win condition (e.g., display message, reset game, etc.)
+            PlayerWin(currentPlayer);
         }
         AmmoThresholdCheck(currentPlayer);
         StartCoroutine(SwitchTurn());
@@ -96,6 +100,84 @@ public class BoardManager : MonoBehaviour
         return false;
     }
 
+    private void Aim(InputAction.CallbackContext context)
+    {
+        if (context.performed && aiming)
+        {
+            aiming = false;
+        }
+
+        else if (context.performed && !aiming)
+        {
+            aiming = true;
+        }
+    }
+
+    public bool ShootPiece(int row, int column)
+    {
+        if ((currentPlayer == Player.Player1 && !p1CanShoot) ||
+            (currentPlayer == Player.Player2 && !p2CanShoot))
+        {
+            return false; // Cannot shoot
+        }
+
+        if (board[row, column] == CellState.Empty)
+        {
+            return false; // No piece to shoot
+        }
+
+        // Remove the piece
+        board[row, column] = CellState.Empty;
+        lastShooter = currentPlayer;
+
+        // Update ammo status
+        if (currentPlayer == Player.Player1)
+        {
+            p1CanShoot = false;
+            boardCanvas.UpdatePlayerOneAmmoText("Player 1 cannot shoot");
+        }
+        else if (currentPlayer == Player.Player2)
+        {
+            p2CanShoot = false;
+            boardCanvas.UpdatePlayerTwoAmmoText("Player 2 cannot shoot");
+        }
+
+        PieceGravity(row, column);
+
+        if (CheckWinCondition(currentPlayer == Player.Player1 ? CellState.Player2 : CellState.Player1))
+        {
+            PlayerWin(currentPlayer == Player.Player1 ? Player.Player2 : Player.Player1);
+            return true;
+        }
+        else if (CheckWinCondition(board[row, column]))
+        {
+            PlayerWin(currentPlayer);
+            return true;
+        }
+
+
+
+
+        StartCoroutine(SwitchTurn());
+        return true;
+    }
+
+    private void PieceGravity(int row, int column)
+    {
+        for (int r = row; r < rows - 1; r++)
+        {
+            if (board[r + 1, column] == CellState.Empty)
+            {
+                board[r + 1, column] = board[r, column];
+                board[r, column] = CellState.Empty;
+            }
+            else
+            {
+                break;
+            }
+        }
+    }
+
     #endregion
 
     #region Piece Checking
@@ -111,6 +193,7 @@ public class BoardManager : MonoBehaviour
                 if (ownedCount == ammoThresholds[i])
                 {
                     p1CanShoot = true;
+                    p1AmmoGained++;
                     boardCanvas.UpdatePlayerOneAmmoText("Player 1 can shoot");
                     return;
                 }
@@ -123,6 +206,7 @@ public class BoardManager : MonoBehaviour
                 if (ownedCount == ammoThresholds[i])
                 {
                     p2CanShoot = true;
+                    p2AmmoGained++;
                     boardCanvas.UpdatePlayerTwoAmmoText("Player 2 can shoot");
                     return;
                 }
@@ -227,6 +311,12 @@ public class BoardManager : MonoBehaviour
             }
         }
         return false;
+    }
+
+    private void PlayerWin(Player player)
+    {
+        UnityEngine.Debug.Log($"{player} wins!");
+        // Additional win handling logic can be added here
     }
 
     public Player GetCurrentPlayer()
