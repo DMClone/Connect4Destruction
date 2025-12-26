@@ -854,7 +854,7 @@ GameObject:
   - component: {fileID: 462486053}
   - component: {fileID: 462486052}
   m_Layer: 0
-  m_Name: Row Selector
+  m_Name: Column Selector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -903,7 +903,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 0}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1529469897}
+        m_TargetAssemblyTypeName: BoardButtonsManager, Assembly-CSharp
+        m_MethodName: TryPlacePiece
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!23 &462486052
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1224,7 +1236,7 @@ GameObject:
   - component: {fileID: 583693513}
   - component: {fileID: 583693512}
   m_Layer: 0
-  m_Name: Row Selector
+  m_Name: Column Selector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1348,7 +1360,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 0}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1529469897}
+        m_TargetAssemblyTypeName: BoardButtonsManager, Assembly-CSharp
+        m_MethodName: TryPlacePiece
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!4 &583693516
 Transform:
   m_ObjectHideFlags: 0
@@ -1429,7 +1453,7 @@ GameObject:
   - component: {fileID: 655080660}
   - component: {fileID: 655080659}
   m_Layer: 0
-  m_Name: Row Selector
+  m_Name: Column Selector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1553,7 +1577,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 0}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1529469897}
+        m_TargetAssemblyTypeName: BoardButtonsManager, Assembly-CSharp
+        m_MethodName: TryPlacePiece
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 6
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!4 &655080663
 Transform:
   m_ObjectHideFlags: 0
@@ -2121,7 +2157,7 @@ GameObject:
   - component: {fileID: 1003885566}
   - component: {fileID: 1003885565}
   m_Layer: 0
-  m_Name: Row Selector
+  m_Name: Column Selector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2170,7 +2206,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 0}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1529469897}
+        m_TargetAssemblyTypeName: BoardButtonsManager, Assembly-CSharp
+        m_MethodName: TryPlacePiece
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 7
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!23 &1003885565
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2663,7 +2711,7 @@ GameObject:
   - component: {fileID: 1338660945}
   - component: {fileID: 1338660944}
   m_Layer: 0
-  m_Name: Row Selector
+  m_Name: Column Selector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2787,7 +2835,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 0}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1529469897}
+        m_TargetAssemblyTypeName: BoardButtonsManager, Assembly-CSharp
+        m_MethodName: TryPlacePiece
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!4 &1338660948
 Transform:
   m_ObjectHideFlags: 0
@@ -2925,7 +2985,7 @@ GameObject:
   - component: {fileID: 1452705421}
   - component: {fileID: 1452705420}
   m_Layer: 0
-  m_Name: Row Selector
+  m_Name: Column Selector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3049,7 +3109,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 0}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1529469897}
+        m_TargetAssemblyTypeName: BoardButtonsManager, Assembly-CSharp
+        m_MethodName: TryPlacePiece
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 5
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!4 &1452705424
 Transform:
   m_ObjectHideFlags: 0
@@ -3123,6 +3195,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e38dac33f5e20b4b99b4f1d0e5c4555, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boardManager: {fileID: 1529469895}
   rowSelectors:
   - {fileID: 583693511}
   - {fileID: 462486050}
@@ -3231,7 +3304,7 @@ GameObject:
   - component: {fileID: 1843248535}
   - component: {fileID: 1843248534}
   m_Layer: 0
-  m_Name: Row Selector
+  m_Name: Column Selector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3355,7 +3428,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 0}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1529469897}
+        m_TargetAssemblyTypeName: BoardButtonsManager, Assembly-CSharp
+        m_MethodName: TryPlacePiece
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 4
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!4 &1843248538
 Transform:
   m_ObjectHideFlags: 0

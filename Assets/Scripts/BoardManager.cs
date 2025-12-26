@@ -34,16 +34,18 @@ public class BoardManager : MonoBehaviour
 
     #region Player Actions
 
-    public void PlacePiece(int column)
+    public bool PlacePiece(int column)
     {
         if (!TryGetLowestEmptyRow(column, out int row))
-            return;
+            return false;
 
         board[row, column] = currentPlayer == Player.Player1 ? CellState.Player1 : CellState.Player2;
         lastShooter = Player.None;
 
         CheckWinCondition(board[row, column]);
         AmmoThresholdCheck(currentPlayer);
+
+        return true;
     }
 
     private bool TryGetLowestEmptyRow(int column, out int row)
