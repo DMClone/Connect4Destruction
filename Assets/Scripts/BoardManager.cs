@@ -27,7 +27,7 @@ public class BoardManager : MonoBehaviour
     [Header("Settings")]
     [SerializeField] private int[] ammoThresholds = new int[2] { 3, 6 };
 
-    private bool aiming;
+    private bool isAiming;
 
     private Player currentPlayer;
     private Player lastShooter;
@@ -43,16 +43,23 @@ public class BoardManager : MonoBehaviour
     private int p1AmmoGained;
     private int p2AmmoGained;
 
-    private void Awake()
+    private void OnEnable()
     {
         InputAction aimAction = inputActions.FindAction("Aim");
         aimAction.performed += Aim;
         aimAction.Enable();
     }
 
+    private void OnDisable()
+    {
+        InputAction aimAction = inputActions.FindAction("Aim");
+        aimAction.performed -= Aim;
+        aimAction.Disable();
+    }
+
     private void Start()
     {
-        aiming = false;
+        isAiming = false;
 
         currentPlayer = Player.Player1;
         lastShooter = Player.None;
@@ -112,17 +119,17 @@ public class BoardManager : MonoBehaviour
     private void Aim(InputAction.CallbackContext context)
     {
         Debug.Log("Aim input received");
-        if (context.performed && aiming)
+        if (context.performed && isAiming)
         {
-            aiming = false;
+            isAiming = false;
             boardButtonsManager.Aiming(false);
         }
 
-        else if (context.performed && !aiming &&
+        else if (context.performed && !isAiming &&
             ((currentPlayer == Player.Player1 && p1CanShoot) ||
              (currentPlayer == Player.Player2 && p2CanShoot)))
         {
-            aiming = true;
+            isAiming = true;
             boardButtonsManager.Aiming(true);
         }
     }
