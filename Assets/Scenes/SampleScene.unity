@@ -247,7 +247,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7435931447041648719, guid: 23cf305561d778a4e80f17d0b29395af, type: 3}
       propertyPath: m_Name
-      value: Red disc (4)
+      value: Red disc
       objectReference: {fileID: 0}
     - target: {fileID: 7435931447041648719, guid: 23cf305561d778a4e80f17d0b29395af, type: 3}
       propertyPath: m_IsActive
@@ -313,7 +313,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7435931447041648719, guid: 23cf305561d778a4e80f17d0b29395af, type: 3}
       propertyPath: m_Name
-      value: Red disc (7)
+      value: Red disc
       objectReference: {fileID: 0}
     - target: {fileID: 7435931447041648719, guid: 23cf305561d778a4e80f17d0b29395af, type: 3}
       propertyPath: m_IsActive
@@ -462,7 +462,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7435931447041648719, guid: 23cf305561d778a4e80f17d0b29395af, type: 3}
       propertyPath: m_Name
-      value: Red disc (15)
+      value: Red disc
       objectReference: {fileID: 0}
     - target: {fileID: 7435931447041648719, guid: 23cf305561d778a4e80f17d0b29395af, type: 3}
       propertyPath: m_IsActive
@@ -528,7 +528,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7435931447041648719, guid: 23cf305561d778a4e80f17d0b29395af, type: 3}
       propertyPath: m_Name
-      value: Red disc (20)
+      value: Red disc
       objectReference: {fileID: 0}
     - target: {fileID: 7435931447041648719, guid: 23cf305561d778a4e80f17d0b29395af, type: 3}
       propertyPath: m_IsActive
@@ -702,7 +702,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7435931447041648719, guid: 23cf305561d778a4e80f17d0b29395af, type: 3}
       propertyPath: m_Name
-      value: Red disc (13)
+      value: Red disc
       objectReference: {fileID: 0}
     - target: {fileID: 7435931447041648719, guid: 23cf305561d778a4e80f17d0b29395af, type: 3}
       propertyPath: m_IsActive
@@ -773,7 +773,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7435931447041648719, guid: 23cf305561d778a4e80f17d0b29395af, type: 3}
       propertyPath: m_Name
-      value: Red disc (12)
+      value: Red disc
       objectReference: {fileID: 0}
     - target: {fileID: 7435931447041648719, guid: 23cf305561d778a4e80f17d0b29395af, type: 3}
       propertyPath: m_IsActive
@@ -839,7 +839,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7117597293277221681, guid: 92b52c3c4aa40a54f8a55031aaa2ade2, type: 3}
       propertyPath: m_Name
-      value: Blue disc (9)
+      value: Blue disc
       objectReference: {fileID: 0}
     - target: {fileID: 7117597293277221681, guid: 92b52c3c4aa40a54f8a55031aaa2ade2, type: 3}
       propertyPath: m_IsActive
@@ -1018,7 +1018,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7117597293277221681, guid: 92b52c3c4aa40a54f8a55031aaa2ade2, type: 3}
       propertyPath: m_Name
-      value: Blue disc (10)
+      value: Blue disc
       objectReference: {fileID: 0}
     - target: {fileID: 7117597293277221681, guid: 92b52c3c4aa40a54f8a55031aaa2ade2, type: 3}
       propertyPath: m_IsActive
@@ -1496,7 +1496,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7435931447041648719, guid: 23cf305561d778a4e80f17d0b29395af, type: 3}
       propertyPath: m_Name
-      value: Red disc (17)
+      value: Red disc
       objectReference: {fileID: 0}
     - target: {fileID: 7435931447041648719, guid: 23cf305561d778a4e80f17d0b29395af, type: 3}
       propertyPath: m_IsActive
@@ -1562,7 +1562,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7117597293277221681, guid: 92b52c3c4aa40a54f8a55031aaa2ade2, type: 3}
       propertyPath: m_Name
-      value: Blue disc (8)
+      value: Blue disc
       objectReference: {fileID: 0}
     - target: {fileID: 7117597293277221681, guid: 92b52c3c4aa40a54f8a55031aaa2ade2, type: 3}
       propertyPath: m_IsActive
@@ -1627,11 +1627,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 462486055}
+  - component: {fileID: 462486056}
   - component: {fileID: 462486051}
   - component: {fileID: 462486054}
   - component: {fileID: 462486053}
   - component: {fileID: 462486052}
-  - component: {fileID: 462486056}
   m_Layer: 0
   m_Name: Column Selector
   m_TagString: Untagged
@@ -2053,7 +2053,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7435931447041648719, guid: 23cf305561d778a4e80f17d0b29395af, type: 3}
       propertyPath: m_Name
-      value: Red disc (11)
+      value: Red disc
       objectReference: {fileID: 0}
     - target: {fileID: 7435931447041648719, guid: 23cf305561d778a4e80f17d0b29395af, type: 3}
       propertyPath: m_IsActive
@@ -2185,7 +2185,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7117597293277221681, guid: 92b52c3c4aa40a54f8a55031aaa2ade2, type: 3}
       propertyPath: m_Name
-      value: Blue disc (3)
+      value: Blue disc
       objectReference: {fileID: 0}
     - target: {fileID: 7117597293277221681, guid: 92b52c3c4aa40a54f8a55031aaa2ade2, type: 3}
       propertyPath: m_IsActive
@@ -2742,7 +2742,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7435931447041648719, guid: 23cf305561d778a4e80f17d0b29395af, type: 3}
       propertyPath: m_Name
-      value: Red disc (10)
+      value: Red disc
       objectReference: {fileID: 0}
     - target: {fileID: 7435931447041648719, guid: 23cf305561d778a4e80f17d0b29395af, type: 3}
       propertyPath: m_IsActive
@@ -3097,7 +3097,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7117597293277221681, guid: 92b52c3c4aa40a54f8a55031aaa2ade2, type: 3}
       propertyPath: m_Name
-      value: Blue disc (4)
+      value: Blue disc
       objectReference: {fileID: 0}
     - target: {fileID: 7117597293277221681, guid: 92b52c3c4aa40a54f8a55031aaa2ade2, type: 3}
       propertyPath: m_IsActive
@@ -3168,7 +3168,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7435931447041648719, guid: 23cf305561d778a4e80f17d0b29395af, type: 3}
       propertyPath: m_Name
-      value: Red disc (6)
+      value: Red disc
       objectReference: {fileID: 0}
     - target: {fileID: 7435931447041648719, guid: 23cf305561d778a4e80f17d0b29395af, type: 3}
       propertyPath: m_IsActive
@@ -3433,7 +3433,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7435931447041648719, guid: 23cf305561d778a4e80f17d0b29395af, type: 3}
       propertyPath: m_Name
-      value: Red disc (18)
+      value: Red disc
       objectReference: {fileID: 0}
     - target: {fileID: 7435931447041648719, guid: 23cf305561d778a4e80f17d0b29395af, type: 3}
       propertyPath: m_IsActive
@@ -3740,7 +3740,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7117597293277221681, guid: 92b52c3c4aa40a54f8a55031aaa2ade2, type: 3}
       propertyPath: m_Name
-      value: Blue disc (12)
+      value: Blue disc
       objectReference: {fileID: 0}
     - target: {fileID: 7117597293277221681, guid: 92b52c3c4aa40a54f8a55031aaa2ade2, type: 3}
       propertyPath: m_IsActive
@@ -4201,7 +4201,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7435931447041648719, guid: 23cf305561d778a4e80f17d0b29395af, type: 3}
       propertyPath: m_Name
-      value: Red disc (19)
+      value: Red disc
       objectReference: {fileID: 0}
     - target: {fileID: 7435931447041648719, guid: 23cf305561d778a4e80f17d0b29395af, type: 3}
       propertyPath: m_IsActive
@@ -4471,7 +4471,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7117597293277221681, guid: 92b52c3c4aa40a54f8a55031aaa2ade2, type: 3}
       propertyPath: m_Name
-      value: Blue disc (6)
+      value: Blue disc
       objectReference: {fileID: 0}
     - target: {fileID: 7117597293277221681, guid: 92b52c3c4aa40a54f8a55031aaa2ade2, type: 3}
       propertyPath: m_IsActive
@@ -4537,7 +4537,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7117597293277221681, guid: 92b52c3c4aa40a54f8a55031aaa2ade2, type: 3}
       propertyPath: m_Name
-      value: Blue disc (1)
+      value: Blue disc
       objectReference: {fileID: 0}
     - target: {fileID: 7117597293277221681, guid: 92b52c3c4aa40a54f8a55031aaa2ade2, type: 3}
       propertyPath: m_IsActive
@@ -4603,7 +4603,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7435931447041648719, guid: 23cf305561d778a4e80f17d0b29395af, type: 3}
       propertyPath: m_Name
-      value: Red disc (2)
+      value: Red disc
       objectReference: {fileID: 0}
     - target: {fileID: 7435931447041648719, guid: 23cf305561d778a4e80f17d0b29395af, type: 3}
       propertyPath: m_IsActive
@@ -4669,7 +4669,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7117597293277221681, guid: 92b52c3c4aa40a54f8a55031aaa2ade2, type: 3}
       propertyPath: m_Name
-      value: Blue disc (20)
+      value: Blue disc
       objectReference: {fileID: 0}
     - target: {fileID: 7117597293277221681, guid: 92b52c3c4aa40a54f8a55031aaa2ade2, type: 3}
       propertyPath: m_IsActive
@@ -4740,7 +4740,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7117597293277221681, guid: 92b52c3c4aa40a54f8a55031aaa2ade2, type: 3}
       propertyPath: m_Name
-      value: Blue disc (13)
+      value: Blue disc
       objectReference: {fileID: 0}
     - target: {fileID: 7117597293277221681, guid: 92b52c3c4aa40a54f8a55031aaa2ade2, type: 3}
       propertyPath: m_IsActive
@@ -4992,7 +4992,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7117597293277221681, guid: 92b52c3c4aa40a54f8a55031aaa2ade2, type: 3}
       propertyPath: m_Name
-      value: Blue disc (18)
+      value: Blue disc
       objectReference: {fileID: 0}
     - target: {fileID: 7117597293277221681, guid: 92b52c3c4aa40a54f8a55031aaa2ade2, type: 3}
       propertyPath: m_IsActive
@@ -5058,7 +5058,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7435931447041648719, guid: 23cf305561d778a4e80f17d0b29395af, type: 3}
       propertyPath: m_Name
-      value: Red disc (5)
+      value: Red disc
       objectReference: {fileID: 0}
     - target: {fileID: 7435931447041648719, guid: 23cf305561d778a4e80f17d0b29395af, type: 3}
       propertyPath: m_IsActive
@@ -5124,7 +5124,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7435931447041648719, guid: 23cf305561d778a4e80f17d0b29395af, type: 3}
       propertyPath: m_Name
-      value: Red disc (3)
+      value: Red disc
       objectReference: {fileID: 0}
     - target: {fileID: 7435931447041648719, guid: 23cf305561d778a4e80f17d0b29395af, type: 3}
       propertyPath: m_IsActive
@@ -5298,7 +5298,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7117597293277221681, guid: 92b52c3c4aa40a54f8a55031aaa2ade2, type: 3}
       propertyPath: m_Name
-      value: Blue disc (7)
+      value: Blue disc
       objectReference: {fileID: 0}
     - target: {fileID: 7117597293277221681, guid: 92b52c3c4aa40a54f8a55031aaa2ade2, type: 3}
       propertyPath: m_IsActive
@@ -5364,11 +5364,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7435931447041648719, guid: 23cf305561d778a4e80f17d0b29395af, type: 3}
       propertyPath: m_Name
-      value: Red disc (9)
-      objectReference: {fileID: 0}
-    - target: {fileID: 7435931447041648719, guid: 23cf305561d778a4e80f17d0b29395af, type: 3}
-      propertyPath: m_IsActive
-      value: 0
+      value: Red disc
       objectReference: {fileID: 0}
     - target: {fileID: 7816679865761051381, guid: 23cf305561d778a4e80f17d0b29395af, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5762,7 +5758,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7117597293277221681, guid: 92b52c3c4aa40a54f8a55031aaa2ade2, type: 3}
       propertyPath: m_Name
-      value: Blue disc (15)
+      value: Blue disc
       objectReference: {fileID: 0}
     - target: {fileID: 7117597293277221681, guid: 92b52c3c4aa40a54f8a55031aaa2ade2, type: 3}
       propertyPath: m_IsActive
@@ -5834,7 +5830,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!114 &1529469895
 MonoBehaviour:
@@ -5848,6 +5844,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7b37f1818b07d243856c609ad6e1c5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inputActions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   boardButtonsManager: {fileID: 1529469897}
   boardCanvas: {fileID: 1679679097}
   ammoThresholds: 0300000006000000
@@ -5887,7 +5884,7 @@ MonoBehaviour:
   - {fileID: 1452705419}
   - {fileID: 655080658}
   - {fileID: 1003885563}
-  redPiecePrefabs:
+  redPieces:
   - {fileID: 1340754151}
   - {fileID: 1859585076}
   - {fileID: 2127891820}
@@ -5909,7 +5906,7 @@ MonoBehaviour:
   - {fileID: 1818931228}
   - {fileID: 1632187219}
   - {fileID: 69932714}
-  bluePiecePrefabs:
+  bluePieces:
   - {fileID: 943762083}
   - {fileID: 1993880664}
   - {fileID: 108524262}
@@ -5931,6 +5928,7 @@ MonoBehaviour:
   - {fileID: 1919738673}
   - {fileID: 617391416}
   - {fileID: 1914988669}
+  lastPieceRow: 0
 --- !u!1 &1567506509 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7435931447041648719, guid: 23cf305561d778a4e80f17d0b29395af, type: 3}
@@ -6108,7 +6106,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7435931447041648719, guid: 23cf305561d778a4e80f17d0b29395af, type: 3}
       propertyPath: m_Name
-      value: Red disc (8)
+      value: Red disc
       objectReference: {fileID: 0}
     - target: {fileID: 7435931447041648719, guid: 23cf305561d778a4e80f17d0b29395af, type: 3}
       propertyPath: m_IsActive
@@ -6385,7 +6383,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7117597293277221681, guid: 92b52c3c4aa40a54f8a55031aaa2ade2, type: 3}
       propertyPath: m_Name
-      value: Blue disc (14)
+      value: Blue disc
       objectReference: {fileID: 0}
     - target: {fileID: 7117597293277221681, guid: 92b52c3c4aa40a54f8a55031aaa2ade2, type: 3}
       propertyPath: m_IsActive
@@ -6733,7 +6731,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7117597293277221681, guid: 92b52c3c4aa40a54f8a55031aaa2ade2, type: 3}
       propertyPath: m_Name
-      value: Blue disc (19)
+      value: Blue disc
       objectReference: {fileID: 0}
     - target: {fileID: 7117597293277221681, guid: 92b52c3c4aa40a54f8a55031aaa2ade2, type: 3}
       propertyPath: m_IsActive
@@ -6804,7 +6802,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7117597293277221681, guid: 92b52c3c4aa40a54f8a55031aaa2ade2, type: 3}
       propertyPath: m_Name
-      value: Blue disc (17)
+      value: Blue disc
       objectReference: {fileID: 0}
     - target: {fileID: 7117597293277221681, guid: 92b52c3c4aa40a54f8a55031aaa2ade2, type: 3}
       propertyPath: m_IsActive
@@ -6875,7 +6873,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7435931447041648719, guid: 23cf305561d778a4e80f17d0b29395af, type: 3}
       propertyPath: m_Name
-      value: Red disc (14)
+      value: Red disc
       objectReference: {fileID: 0}
     - target: {fileID: 7435931447041648719, guid: 23cf305561d778a4e80f17d0b29395af, type: 3}
       propertyPath: m_IsActive
@@ -7049,7 +7047,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7117597293277221681, guid: 92b52c3c4aa40a54f8a55031aaa2ade2, type: 3}
       propertyPath: m_Name
-      value: Blue disc (16)
+      value: Blue disc
       objectReference: {fileID: 0}
     - target: {fileID: 7117597293277221681, guid: 92b52c3c4aa40a54f8a55031aaa2ade2, type: 3}
       propertyPath: m_IsActive
@@ -7115,7 +7113,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7117597293277221681, guid: 92b52c3c4aa40a54f8a55031aaa2ade2, type: 3}
       propertyPath: m_Name
-      value: Blue disc (2)
+      value: Blue disc
       objectReference: {fileID: 0}
     - target: {fileID: 7117597293277221681, guid: 92b52c3c4aa40a54f8a55031aaa2ade2, type: 3}
       propertyPath: m_IsActive
@@ -7181,7 +7179,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7117597293277221681, guid: 92b52c3c4aa40a54f8a55031aaa2ade2, type: 3}
       propertyPath: m_Name
-      value: Blue disc (5)
+      value: Blue disc
       objectReference: {fileID: 0}
     - target: {fileID: 7117597293277221681, guid: 92b52c3c4aa40a54f8a55031aaa2ade2, type: 3}
       propertyPath: m_IsActive
@@ -7360,7 +7358,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7435931447041648719, guid: 23cf305561d778a4e80f17d0b29395af, type: 3}
       propertyPath: m_Name
-      value: Red disc (16)
+      value: Red disc
       objectReference: {fileID: 0}
     - target: {fileID: 7435931447041648719, guid: 23cf305561d778a4e80f17d0b29395af, type: 3}
       propertyPath: m_IsActive
@@ -7431,7 +7429,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7117597293277221681, guid: 92b52c3c4aa40a54f8a55031aaa2ade2, type: 3}
       propertyPath: m_Name
-      value: Blue disc (11)
+      value: Blue disc
       objectReference: {fileID: 0}
     - target: {fileID: 7117597293277221681, guid: 92b52c3c4aa40a54f8a55031aaa2ade2, type: 3}
       propertyPath: m_IsActive
@@ -7497,7 +7495,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7435931447041648719, guid: 23cf305561d778a4e80f17d0b29395af, type: 3}
       propertyPath: m_Name
-      value: Red disc (1)
+      value: Red disc
       objectReference: {fileID: 0}
     - target: {fileID: 7435931447041648719, guid: 23cf305561d778a4e80f17d0b29395af, type: 3}
       propertyPath: m_IsActive

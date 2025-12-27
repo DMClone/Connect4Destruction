@@ -9,13 +9,16 @@ public class BoardButtonsManager : MonoBehaviour
     [SerializeField] private BoardManager boardManager;
     [SerializeField] private GameObject[] rowSelectors;
 
-    [SerializeField] private GameObject[] redPiecePrefabs;
-    [SerializeField] private GameObject[] bluePiecePrefabs;
+    [SerializeField] private GameObject[] redPieces;
+    [SerializeField] private GameObject[] bluePieces;
 
     private List<Button> rowButtons;
+    private List<Piece> pieces;
 
     private int redPieceIndex;
     private int bluePieceIndex;
+
+    public int lastPieceRow;
 
     private void Start()
     {
@@ -24,6 +27,20 @@ public class BoardButtonsManager : MonoBehaviour
         {
             Button button = rowSelectors[i].GetComponent<Button>();
             rowButtons.Add(button);
+        }
+
+        pieces = new List<Piece>();
+        for (int i = 0; i < redPieces.Length; i++)
+        {
+            Piece piece = redPieces[i].GetComponent<Piece>();
+            piece.SetBoardManager(boardManager);
+            pieces.Add(piece);
+        }
+        for (int i = 0; i < bluePieces.Length; i++)
+        {
+            Piece piece = bluePieces[i].GetComponent<Piece>();
+            piece.SetBoardManager(boardManager);
+            pieces.Add(piece);
         }
     }
 
@@ -45,6 +62,55 @@ public class BoardButtonsManager : MonoBehaviour
             EnablePiece(column, currentPlayer);
     }
 
+    public void SetPieceLocation(int column, Vector3 position)
+    {
+        rowSelectors[column].transform.position = position;
+    }
+
+    public void Aiming(bool isAiming)
+    {
+        if (isAiming)
+        {
+            ToggleRowSelectors(false);
+            ShowPieceTargets();
+            SetFirstTargetInteractable();
+        }
+        else
+        {
+            ToggleRowSelectors(true);
+            HidePieceTargets();
+        }
+    }
+
+    private void ShowPieceTargets()
+    {
+        for (int i = 0; i < redPieces.Length; i++)
+            redPieces[i].GetComponent<Piece>().ShowTarget();
+        for (int i = 0; i < bluePieces.Length; i++)
+            bluePieces[i].GetComponent<Piece>().ShowTarget();
+    }
+
+    private void HidePieceTargets()
+    {
+        for (int i = 0; i < redPieces.Length; i++)
+            redPieces[i].GetComponent<Piece>().HideTarget();
+        for (int i = 0; i < bluePieces.Length; i++)
+            bluePieces[i].GetComponent<Piece>().HideTarget();
+    }
+
+    private void SetFirstTargetInteractable()
+    {
+        for (int i = 0; i < pieces.Count; i++)
+        {
+            if (pieces[i].gameObject.activeSelf)
+            {
+                EventSystem.current.SetSelectedGameObject(pieces[i].transform.GetChild(0).gameObject);
+                Debug.Log("First target set to " + i);
+                break;
+            }
+        }
+    }
+
     private void RowSelectorError(int column)
     {
         rowSelectors[column].GetComponent<Animator>().SetTrigger("Error");
@@ -54,18 +120,20 @@ public class BoardButtonsManager : MonoBehaviour
     {
         if (player == BoardManager.Player.Player1)
         {
-            if (redPieceIndex >= redPiecePrefabs.Length)
+            if (redPieceIndex >= redPieces.Length)
                 redPieceIndex = 0;
-            redPiecePrefabs[redPieceIndex].SetActive(true);
-            redPiecePrefabs[redPieceIndex].transform.position = rowSelectors[column].transform.position + Vector3.up * 2;
+            redPieces[redPieceIndex].SetActive(true);
+            redPieces[redPieceIndex].transform.position = rowSelectors[column].transform.position + Vector3.up * 2;
+            redPieces[redPieceIndex].GetComponent<Piece>().Initialize(lastPieceRow, column);
             redPieceIndex++;
         }
         else if (player == BoardManager.Player.Player2)
         {
-            if (bluePieceIndex >= bluePiecePrefabs.Length)
+            if (bluePieceIndex >= bluePieces.Length)
                 bluePieceIndex = 0;
-            bluePiecePrefabs[bluePieceIndex].SetActive(true);
-            bluePiecePrefabs[bluePieceIndex].transform.position = rowSelectors[column].transform.position + Vector3.up * 2;
+            bluePieces[bluePieceIndex].SetActive(true);
+            bluePieces[bluePieceIndex].transform.position = rowSelectors[column].transform.position + Vector3.up * 2;
+            bluePieces[bluePieceIndex].GetComponent<Piece>().Initialize(lastPieceRow, column);
             bluePieceIndex++;
         }
     }

@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Diagnostics;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -21,6 +20,7 @@ public class BoardManager : MonoBehaviour
     }
 
     [Header("References")]
+    [SerializeField] private InputActionAsset inputActions;
     [SerializeField] private BoardButtonsManager boardButtonsManager;
     [SerializeField] private BoardCanvas boardCanvas;
 
@@ -42,6 +42,13 @@ public class BoardManager : MonoBehaviour
 
     private int p1AmmoGained;
     private int p2AmmoGained;
+
+    private void Awake()
+    {
+        InputAction aimAction = inputActions.FindAction("Aim");
+        aimAction.performed += Aim;
+        aimAction.Enable();
+    }
 
     private void Start()
     {
@@ -79,7 +86,9 @@ public class BoardManager : MonoBehaviour
         if (CheckWinCondition(board[row, column]))
         {
             PlayerWin(currentPlayer);
+            return true;
         }
+        boardButtonsManager.lastPieceRow = row;
         AmmoThresholdCheck(currentPlayer);
         StartCoroutine(SwitchTurn());
 
@@ -102,14 +111,19 @@ public class BoardManager : MonoBehaviour
 
     private void Aim(InputAction.CallbackContext context)
     {
+        Debug.Log("Aim input received");
         if (context.performed && aiming)
         {
             aiming = false;
+            boardButtonsManager.Aiming(false);
         }
 
-        else if (context.performed && !aiming)
+        else if (context.performed && !aiming &&
+            ((currentPlayer == Player.Player1 && p1CanShoot) ||
+             (currentPlayer == Player.Player2 && p2CanShoot)))
         {
             aiming = true;
+            boardButtonsManager.Aiming(true);
         }
     }
 
