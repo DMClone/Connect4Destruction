@@ -28,10 +28,6 @@ public class TargetAiming : MonoBehaviour
         InputAction shootAction = inputActions.FindAction("Shoot");
         shootAction.performed += ctx => Shoot();
         shootAction.Enable();
-
-        InputAction aimAction = inputActions.FindAction("MoveTarget");
-        aimAction.performed += MoveIndicator;
-        aimAction.Enable();
     }
 
     private void OnDisable()
@@ -41,17 +37,11 @@ public class TargetAiming : MonoBehaviour
         InputAction shootAction = inputActions.FindAction("Shoot");
         shootAction.performed -= ctx => Shoot();
         shootAction.Disable();
-
-        InputAction aimAction = inputActions.FindAction("MoveTarget");
-        aimAction.performed -= MoveIndicator;
-        aimAction.Disable();
     }
 
-
-
-    private void MoveIndicator(InputAction.CallbackContext context)
+    private void FixedUpdate()
     {
-        Vector2 input = context.ReadValue<Vector2>();
+        Vector2 input = inputActions.FindAction("MoveTarget").ReadValue<Vector2>();
         Vector3 newPosition = targetIndicator.transform.position + new Vector3(input.x, input.y, 0f) * indicatorMoveSpeed * Time.deltaTime;
         newPosition.y = Mathf.Clamp(newPosition.y, minY, maxY);
         newPosition.x = Mathf.Clamp(newPosition.x, minX, maxX);

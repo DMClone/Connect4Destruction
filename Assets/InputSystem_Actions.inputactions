@@ -38,7 +38,7 @@
                 {
                     "name": "",
                     "id": "143bb1cd-cc10-4eca-a2f0-a3664166fe91",
-                    "path": "<Gamepad>/buttonWest",
+                    "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
@@ -129,18 +129,18 @@
                     "path": "<Mouse>/delta",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Keyboard&Mouse",
                     "action": "MoveTarget",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "3e96643e-a013-4808-a1f1-87c8212275a2",
-                    "path": "<Gamepad>/rightStick",
+                    "id": "0e46c91e-bc78-4967-b96a-039664c5fbbb",
+                    "path": "<Gamepad>/leftStick",
                     "interactions": "",
-                    "processors": "",
-                    "groups": "",
+                    "processors": "ScaleVector2(x=2,y=2)",
+                    "groups": ";Gamepad",
                     "action": "MoveTarget",
                     "isComposite": false,
                     "isPartOfComposite": false
