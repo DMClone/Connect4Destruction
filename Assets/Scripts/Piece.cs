@@ -21,9 +21,8 @@ public class Piece : MonoBehaviour
 
     public void PieceShot()
     {
-
         Debug.Log("Piece at (" + row + ", " + column + ") shot.");
-        if (!boardManager.ShootPiece(row, column))
+        if (!boardManager.BreakPiece(row, column))
             return;
 
         gameObject.SetActive(false);

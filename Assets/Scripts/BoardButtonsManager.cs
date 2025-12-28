@@ -13,7 +13,6 @@ public class BoardButtonsManager : MonoBehaviour
     [SerializeField] private GameObject[] bluePieces;
 
     private List<Button> rowButtons;
-    private List<Piece> pieces;
 
     private int redPieceIndex;
     private int bluePieceIndex;
@@ -29,18 +28,15 @@ public class BoardButtonsManager : MonoBehaviour
             rowButtons.Add(button);
         }
 
-        pieces = new List<Piece>();
         for (int i = 0; i < redPieces.Length; i++)
         {
             Piece piece = redPieces[i].GetComponent<Piece>();
             piece.SetBoardManager(boardManager);
-            pieces.Add(piece);
         }
         for (int i = 0; i < bluePieces.Length; i++)
         {
             Piece piece = bluePieces[i].GetComponent<Piece>();
             piece.SetBoardManager(boardManager);
-            pieces.Add(piece);
         }
     }
 
@@ -73,7 +69,6 @@ public class BoardButtonsManager : MonoBehaviour
         {
             ToggleRowSelectors(false);
             ShowPieceTargets();
-            SetFirstTargetInteractable();
         }
         else
         {
@@ -96,19 +91,6 @@ public class BoardButtonsManager : MonoBehaviour
             redPieces[i].GetComponent<Piece>().HideTarget();
         for (int i = 0; i < bluePieces.Length; i++)
             bluePieces[i].GetComponent<Piece>().HideTarget();
-    }
-
-    private void SetFirstTargetInteractable()
-    {
-        for (int i = 0; i < pieces.Count; i++)
-        {
-            if (pieces[i].gameObject.activeSelf)
-            {
-                EventSystem.current.SetSelectedGameObject(pieces[i].transform.GetChild(0).gameObject);
-                Debug.Log("First target set to " + i);
-                break;
-            }
-        }
     }
 
     private void RowSelectorError(int column)
@@ -136,5 +118,17 @@ public class BoardButtonsManager : MonoBehaviour
             bluePieces[bluePieceIndex].GetComponent<Piece>().Initialize(lastPieceRow, column);
             bluePieceIndex++;
         }
+    }
+
+    public void ResetPieces()
+    {
+        HidePieceTargets();
+        redPieceIndex = 0;
+        bluePieceIndex = 0;
+
+        for (int i = 0; i < redPieces.Length; i++)
+            redPieces[i].SetActive(false);
+        for (int i = 0; i < bluePieces.Length; i++)
+            bluePieces[i].SetActive(false);
     }
 }

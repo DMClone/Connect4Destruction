@@ -23,6 +23,7 @@ public class BoardManager : MonoBehaviour
     [SerializeField] private InputActionAsset inputActions;
     [SerializeField] private BoardButtonsManager boardButtonsManager;
     [SerializeField] private BoardCanvas boardCanvas;
+    [SerializeField] private TargetAiming targetAiming;
 
     [Header("Settings")]
     [SerializeField] private int[] ammoThresholds = new int[2] { 3, 6 };
@@ -30,7 +31,6 @@ public class BoardManager : MonoBehaviour
     private bool isAiming;
 
     private Player currentPlayer;
-    private Player lastShooter;
 
     private int rows = 6;
     private int columns = 7;
@@ -59,16 +59,7 @@ public class BoardManager : MonoBehaviour
 
     private void Start()
     {
-        isAiming = false;
-
         currentPlayer = Player.Player1;
-        lastShooter = Player.None;
-
-        p1CanShoot = false;
-        p2CanShoot = false;
-
-        p1AmmoGained = 0;
-        p2AmmoGained = 0;
 
         // Initialize board to empty
         for (int r = 0; r < rows; r++)
@@ -84,11 +75,10 @@ public class BoardManager : MonoBehaviour
 
     public bool PlacePiece(int column)
     {
-        if (!TryGetLowestEmptyRow(column, out int row))
+        if (!TryGetLowestEmptyRow(column, out int row) || currentPlayer == Player.None)
             return false;
 
         board[row, column] = currentPlayer == Player.Player1 ? CellState.Player1 : CellState.Player2;
-        lastShooter = Player.None;
 
         if (CheckWinCondition(board[row, column]))
         {
@@ -101,6 +91,69 @@ public class BoardManager : MonoBehaviour
 
         return true;
     }
+
+    private void Aim(InputAction.CallbackContext context)
+    {
+        Debug.Log("Aim input received");
+        if (context.performed && isAiming)
+        {
+            isAiming = false;
+            boardButtonsManager.Aiming(false);
+            targetAiming.enabled = false;
+        }
+
+        else if (context.performed && !isAiming &&
+            ((currentPlayer == Player.Player1 && p1CanShoot) ||
+             (currentPlayer == Player.Player2 && p2CanShoot)))
+        {
+            isAiming = true;
+            boardButtonsManager.Aiming(true);
+            targetAiming.enabled = true;
+        }
+    }
+
+    public bool BreakPiece(int row, int column)
+    {
+        if (board[row, column] == CellState.Empty)
+        {
+            return false;
+        }
+
+        isAiming = false;
+        boardButtonsManager.Aiming(false);
+        targetAiming.enabled = false;
+
+        board[row, column] = CellState.Empty;
+
+        if (currentPlayer == Player.Player1)
+        {
+            p1CanShoot = false;
+            boardCanvas.UpdatePlayerOneAmmoText("Player 1 cannot shoot");
+        }
+        else if (currentPlayer == Player.Player2)
+        {
+            p2CanShoot = false;
+            boardCanvas.UpdatePlayerTwoAmmoText("Player 2 cannot shoot");
+        }
+
+        DropPiecesAbove(row, column);
+
+        if (CheckWinCondition(currentPlayer == Player.Player1 ? CellState.Player2 : CellState.Player1))
+        {
+            PlayerWin(currentPlayer == Player.Player1 ? Player.Player2 : Player.Player1);
+            return true;
+        }
+        if (CheckWinCondition(board[row, column]))
+        {
+            PlayerWin(currentPlayer);
+            return true;
+        }
+
+        StartCoroutine(SwitchTurn());
+        return true;
+    }
+
+    #endregion
 
     private bool TryGetLowestEmptyRow(int column, out int row)
     {
@@ -116,90 +169,14 @@ public class BoardManager : MonoBehaviour
         return false;
     }
 
-    private void Aim(InputAction.CallbackContext context)
-    {
-        Debug.Log("Aim input received");
-        if (context.performed && isAiming)
-        {
-            isAiming = false;
-            boardButtonsManager.Aiming(false);
-        }
-
-        else if (context.performed && !isAiming &&
-            ((currentPlayer == Player.Player1 && p1CanShoot) ||
-             (currentPlayer == Player.Player2 && p2CanShoot)))
-        {
-            isAiming = true;
-            boardButtonsManager.Aiming(true);
-        }
-    }
-
-    public bool ShootPiece(int row, int column)
-    {
-        if ((currentPlayer == Player.Player1 && !p1CanShoot) ||
-            (currentPlayer == Player.Player2 && !p2CanShoot))
-        {
-            return false; // Cannot shoot
-        }
-
-        if (board[row, column] == CellState.Empty)
-        {
-            return false; // No piece to shoot
-        }
-
-        // Remove the piece
-        board[row, column] = CellState.Empty;
-        lastShooter = currentPlayer;
-
-        // Update ammo status
-        if (currentPlayer == Player.Player1)
-        {
-            p1CanShoot = false;
-            boardCanvas.UpdatePlayerOneAmmoText("Player 1 cannot shoot");
-        }
-        else if (currentPlayer == Player.Player2)
-        {
-            p2CanShoot = false;
-            boardCanvas.UpdatePlayerTwoAmmoText("Player 2 cannot shoot");
-        }
-
-        PieceGravity(row, column);
-
-        if (CheckWinCondition(currentPlayer == Player.Player1 ? CellState.Player2 : CellState.Player1))
-        {
-            PlayerWin(currentPlayer == Player.Player1 ? Player.Player2 : Player.Player1);
-            return true;
-        }
-        else if (CheckWinCondition(board[row, column]))
-        {
-            PlayerWin(currentPlayer);
-            return true;
-        }
-
-
-
-
-        StartCoroutine(SwitchTurn());
-        return true;
-    }
-
-    private void PieceGravity(int row, int column)
+    private void DropPiecesAbove(int row, int column)
     {
         for (int r = row; r < rows - 1; r++)
         {
-            if (board[r + 1, column] == CellState.Empty)
-            {
-                board[r + 1, column] = board[r, column];
-                board[r, column] = CellState.Empty;
-            }
-            else
-            {
-                break;
-            }
+            board[r, column] = board[r + 1, column];
+            board[r + 1, column] = CellState.Empty;
         }
     }
-
-    #endregion
 
     #region Piece Checking
 
@@ -336,12 +313,66 @@ public class BoardManager : MonoBehaviour
 
     private void PlayerWin(Player player)
     {
-        UnityEngine.Debug.Log($"{player} wins!");
-        // Additional win handling logic can be added here
+        currentPlayer = Player.None;
+        boardCanvas.UpdateCurrentPlayerText("Player " + (player == Player.Player1 ? "1" : "2") + " wins!");
+        StartCoroutine(RestartGame());
     }
 
     public Player GetCurrentPlayer()
     {
         return currentPlayer;
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (board == null)
+            return;
+
+        for (int r = 0; r < rows; r++)
+        {
+            for (int c = 0; c < columns; c++)
+            {
+                Vector3 position = new Vector3(c, r, 0);
+                if (board[r, c] == CellState.Player1)
+                {
+                    Gizmos.color = Color.red;
+                    Gizmos.DrawSphere(position, 0.4f);
+                }
+                else if (board[r, c] == CellState.Player2)
+                {
+                    Gizmos.color = Color.blue;
+                    Gizmos.DrawSphere(position, 0.4f);
+                }
+            }
+        }
+    }
+
+    private IEnumerator RestartGame()
+    {
+        yield return new WaitForSeconds(2f);
+
+        // Reset board state
+        for (int r = 0; r < rows; r++)
+        {
+            for (int c = 0; c < columns; c++)
+            {
+                board[r, c] = CellState.Empty;
+            }
+        }
+
+        isAiming = false;
+
+        currentPlayer = Player.Player1;
+
+        p1CanShoot = false;
+        p2CanShoot = false;
+
+        p1AmmoGained = 0;
+        p2AmmoGained = 0;
+
+        boardCanvas.UpdateCurrentPlayerText("Player 1");
+        boardCanvas.UpdatePlayerOneAmmoText("Player 1 cannot shoot");
+        boardCanvas.UpdatePlayerTwoAmmoText("Player 2 cannot shoot");
+        boardButtonsManager.ResetPieces();
     }
 }
