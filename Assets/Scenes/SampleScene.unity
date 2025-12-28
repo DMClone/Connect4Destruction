@@ -5972,8 +5972,9 @@ MonoBehaviour:
   boardButtonsManager: {fileID: 1529469897}
   boardCanvas: {fileID: 1679679097}
   targetAiming: {fileID: 1529469898}
-  ammoThresholds: 0300000006000000
   turnSwitchDelay: 1
+  victoryDelay: 3.5
+  ammoThresholds: 0300000006000000
 --- !u!4 &1529469896
 Transform:
   m_ObjectHideFlags: 0
