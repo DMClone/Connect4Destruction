@@ -26,6 +26,8 @@ public class BoardManager : MonoBehaviour
     [SerializeField] private TargetAiming targetAiming;
 
     [Header("Settings")]
+    [SerializeField] private float turnSwitchDelay;
+    [SerializeField] private float victoryDelay;
     [SerializeField] private int[] ammoThresholds = new int[2] { 3, 6 };
 
     private bool isAiming;
@@ -46,14 +48,14 @@ public class BoardManager : MonoBehaviour
     private void OnEnable()
     {
         InputAction aimAction = inputActions.FindAction("Aim");
-        aimAction.performed += Aim;
+        aimAction.performed += AimToggle;
         aimAction.Enable();
     }
 
     private void OnDisable()
     {
         InputAction aimAction = inputActions.FindAction("Aim");
-        aimAction.performed -= Aim;
+        aimAction.performed -= AimToggle;
         aimAction.Disable();
     }
 
@@ -92,17 +94,19 @@ public class BoardManager : MonoBehaviour
         return true;
     }
 
-    private void Aim(InputAction.CallbackContext context)
+    private void AimToggle(InputAction.CallbackContext context)
     {
-        Debug.Log("Aim input received");
-        if (context.performed && isAiming)
+        if (currentPlayer == Player.None)
+            return;
+
+        if (isAiming)
         {
             isAiming = false;
             boardButtonsManager.Aiming(false);
             targetAiming.enabled = false;
         }
 
-        else if (context.performed && !isAiming &&
+        else if (!isAiming &&
             ((currentPlayer == Player.Player1 && p1CanShoot) ||
              (currentPlayer == Player.Player2 && p2CanShoot)))
         {
@@ -138,6 +142,7 @@ public class BoardManager : MonoBehaviour
 
         DropPiecesAbove(row, column);
 
+        // Check the win condition for the player that hasn't shot, if true they win
         if (CheckWinCondition(currentPlayer == Player.Player1 ? CellState.Player2 : CellState.Player1))
         {
             PlayerWin(currentPlayer == Player.Player1 ? Player.Player2 : Player.Player1);
@@ -155,6 +160,7 @@ public class BoardManager : MonoBehaviour
 
     #endregion
 
+    // Finds the lowest empty row in the specified column
     private bool TryGetLowestEmptyRow(int column, out int row)
     {
         for (int y = 0; y < rows; y++)
@@ -169,6 +175,7 @@ public class BoardManager : MonoBehaviour
         return false;
     }
 
+    // Drops pieces above the specified row and column down by one
     private void DropPiecesAbove(int row, int column)
     {
         for (int r = row; r < rows - 1; r++)
@@ -184,34 +191,32 @@ public class BoardManager : MonoBehaviour
     {
         int ownedCount = CountPiecesOnOwnedSide(player);
 
+        // Checks if the player has the next threshold of pieces owned on their side
         if (player == Player.Player1)
         {
-            for (int i = 0 + p1AmmoGained; i < ammoThresholds.Length; i++)
+            if (ownedCount == ammoThresholds[p1AmmoGained])
             {
-                if (ownedCount == ammoThresholds[i])
-                {
-                    p1CanShoot = true;
-                    p1AmmoGained++;
-                    boardCanvas.UpdatePlayerOneAmmoText("Player 1 can shoot");
-                    return;
-                }
+                p1CanShoot = true;
+                p1AmmoGained++;
+                boardCanvas.UpdatePlayerOneAmmoText("Player 1 can shoot");
+                return;
             }
+
         }
         else if (player == Player.Player2)
         {
-            for (int i = 0 + p2AmmoGained; i < ammoThresholds.Length; i++)
+            if (ownedCount == ammoThresholds[p2AmmoGained])
             {
-                if (ownedCount == ammoThresholds[i])
-                {
-                    p2CanShoot = true;
-                    p2AmmoGained++;
-                    boardCanvas.UpdatePlayerTwoAmmoText("Player 2 can shoot");
-                    return;
-                }
+                p2CanShoot = true;
+                p2AmmoGained++;
+                boardCanvas.UpdatePlayerTwoAmmoText("Player 2 can shoot");
+                return;
             }
+
         }
     }
 
+    // Counts the number of pieces a player has on their own side of the board. Player 1 owns the left half, Player 2 owns the right half. Both 3x6
     private int CountPiecesOnOwnedSide(Player player)
     {
         int count = 0;
@@ -254,7 +259,7 @@ public class BoardManager : MonoBehaviour
         Player wasPlayer = currentPlayer;
         currentPlayer = Player.None;
         boardButtonsManager.ToggleRowSelectors(false);
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(turnSwitchDelay);
         currentPlayer = wasPlayer == Player.Player1 ? Player.Player2 : Player.Player1;
         boardButtonsManager.ToggleRowSelectors(true);
         boardCanvas.UpdateCurrentPlayerText(currentPlayer == Player.Player1 ? "Player 1" : "Player 2");
@@ -323,35 +328,10 @@ public class BoardManager : MonoBehaviour
         return currentPlayer;
     }
 
-    private void OnDrawGizmos()
-    {
-        if (board == null)
-            return;
-
-        for (int r = 0; r < rows; r++)
-        {
-            for (int c = 0; c < columns; c++)
-            {
-                Vector3 position = new Vector3(c, r, 0);
-                if (board[r, c] == CellState.Player1)
-                {
-                    Gizmos.color = Color.red;
-                    Gizmos.DrawSphere(position, 0.4f);
-                }
-                else if (board[r, c] == CellState.Player2)
-                {
-                    Gizmos.color = Color.blue;
-                    Gizmos.DrawSphere(position, 0.4f);
-                }
-            }
-        }
-    }
-
     private IEnumerator RestartGame()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(victoryDelay);
 
-        // Reset board state
         for (int r = 0; r < rows; r++)
         {
             for (int c = 0; c < columns; c++)

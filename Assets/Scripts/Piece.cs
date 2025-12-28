@@ -8,6 +8,7 @@ public class Piece : MonoBehaviour
     private int row;
     private int column;
 
+    // Sets the reference to the BoardManager from the BoardButtonsManager
     public void SetBoardManager(BoardManager bm)
     {
         boardManager = bm;
@@ -19,9 +20,9 @@ public class Piece : MonoBehaviour
         column = c;
     }
 
+    // Called when the piece is shot by the TargetAiming system
     public void PieceShot()
     {
-        Debug.Log("Piece at (" + row + ", " + column + ") shot.");
         if (!boardManager.BreakPiece(row, column))
             return;
 

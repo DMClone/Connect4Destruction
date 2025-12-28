@@ -39,6 +39,7 @@ public class TargetAiming : MonoBehaviour
         shootAction.Disable();
     }
 
+    // Moves the target indicator based on player input from the new Input System
     private void FixedUpdate()
     {
         Vector2 input = inputActions.FindAction("MoveTarget").ReadValue<Vector2>();
@@ -50,10 +51,8 @@ public class TargetAiming : MonoBehaviour
 
     private void Shoot()
     {
-        Debug.Log("Shoot action performed.");
         if (Physics.Raycast(targetIndicator.transform.position, Vector3.forward, out RaycastHit hitInfo))
         {
-            Debug.Log("Raycast hit: " + hitInfo.collider.name);
             Piece piece = hitInfo.collider.GetComponent<Piece>();
             if (piece != null)
             {
